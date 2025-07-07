@@ -1,6 +1,7 @@
 import {BrowserRouter as Router ,Routes, Route} from "react-router-dom";
 import { lazy,Suspense } from "react";
 import Loader from "./components/loader";
+import Header from "./components/header";
 
 // This helps in reducing the initial load time of the application
 // by splitting the code into smaller chunks
@@ -39,7 +40,11 @@ const TransactionManagement = lazy(
 const App = () => {
   return (
     <Router>
+
       {/* header */}
+      <Header />
+      
+       {/* Suspense is used to show a fallback loader while the components are being loaded */}
        <Suspense fallback={<Loader />}>
 
            <Routes>

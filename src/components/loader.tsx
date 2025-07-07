@@ -1,14 +1,46 @@
-import React from "react";
-
-
 const Loader = () => {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500">loading......</div>
-    </div>
+    <section className="loader">
+      <div></div>
+    </section>
   );
 };
 
-// This component can be used as a fallback in React Suspense
-// to show a loading spinner while the main content is being loaded.
+export const LoaderLayout = () => {
+  return (
+    <section
+      style={{
+        height: "calc(100vh - 4rem)",
+      }}
+      className="loader"
+    >
+      <div></div>
+    </section>
+  );
+};
+
 export default Loader;
+
+interface SkeletonProps {
+  width?: string;
+  length?: number;
+  height?: string;
+  containerHeight?: string;
+}
+
+export const Skeleton = ({
+  width = "unset",
+  length = 3,
+  height = "30px",
+  containerHeight = "unset",
+}: SkeletonProps) => {
+  const skeletions = Array.from({ length }, (_, idx) => (
+    <div key={idx} className="skeleton-shape" style={{ height }}></div>
+  ));
+
+  return (
+    <div className="skeleton-loader" style={{ width, height: containerHeight }}>
+      {skeletions}
+    </div>
+  );
+};
