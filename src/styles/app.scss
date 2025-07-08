@@ -10,10 +10,25 @@
   box-sizing: border-box;
 }
 
+body {
+  user-select: none;
+}
+
 a {
   text-decoration: none;
   color: black;
 }
+
+button {
+  &:disabled {
+    cursor: not-allowed !important;
+    opacity: 0.5;
+  }
+}
+
+$color1: white;
+$color2: rgb(46, 46, 46);
+$color3: rgb(0, 104, 136);
 
 .red {
   color: red;
@@ -26,12 +41,101 @@ a {
 }
 
 @import "admin-styles/mixin";
-
+@import "home";
+@import "cart";
+@import "shipping";
+@import "login";
+@import "search";
+@import "product-details";
+@import "footer";
 @import "admin-styles/dashboard";
 @import "admin-styles/products";
 @import "admin-styles/chart";
 @import "admin-styles/dashboardapp";
 @import "admin-styles/mediaquery";
+
+.container {
+  max-width: 1367px;
+  width: 100%;
+  margin: auto;
+  overflow: auto;
+  > h1 {
+    @include heading;
+    margin: 1rem 0;
+    text-align: left;
+  }
+}
+
+.heading {
+  @include heading;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.header {
+  @include flex(row, flex-end, stretch, 1.2rem);
+  padding: 1rem;
+  a {
+    color: $color2;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+
+    &:hover {
+      color: $color3;
+    }
+  }
+
+  button {
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: transparent;
+    &:hover {
+      color: $color3;
+    }
+  }
+
+  dialog {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100px;
+    position: absolute;
+    left: calc(100% - 100px);
+    top: 8%;
+    > div {
+      @include flex(column, flex-start, center, 0.25rem);
+    }
+  }
+}
+
+.not-found {
+  height: 80vh;
+  @include flex(column);
+  > svg {
+    font-size: 5rem;
+  }
+}
+
+.checkout-container {
+  height: 80vh;
+  width: 100%;
+  margin: auto;
+  @include flex;
+
+  > form {
+    @include flex(column, flex-start, stretch, 2rem);
+    max-width: 400px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    padding: 4rem;
+    border-radius: 6px;
+    > button {
+      @include btn(1rem, $color3, $color1);
+      width: 100%;
+      font-size: 1.1rem;
+    }
+  }
+}
 
 .admin-container {
   @include grid(1fr 4fr, 2rem);
@@ -184,7 +288,7 @@ a {
 
 .loader {
   width: 100%;
-  height: 100vh;
+  height: 85vh;
   @include flex;
   > div {
     @include square(10rem);
@@ -197,6 +301,20 @@ a {
   }
 }
 
+.skeleton-loader {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-shape {
+  height: 30px;
+  width: 100%;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  animation: skeleon-loading 1.5s infinite;
+}
+
 @keyframes loading-animation {
   to {
     transform: rotateZ(360deg);
@@ -205,5 +323,17 @@ a {
 @keyframes up-and-down {
   to {
     transform: translate(-50%, -20%);
+  }
+}
+
+@keyframes skeleon-loading {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
   }
 }

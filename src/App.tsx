@@ -42,7 +42,7 @@ const App = () => {
     <Router>
 
       {/* header */}
-      <Header />
+      <Header user={null} />
       
        {/* Suspense is used to show a fallback loader while the components are being loaded */}
        <Suspense fallback={<Loader />}>
