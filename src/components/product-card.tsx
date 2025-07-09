@@ -21,15 +21,17 @@ const ProductCard = ({
 }: ProductsProps) => {
   return (
     <div className="productcard">
-      <img src={`${server}/${photo}`} alt="product" />
+      <img src={photo} alt="product" />
+      {/* <img src={`${server}/${photo}`} alt="product" /> */}
       <p>{productId}</p>
       <span>{price}</span>
 
       <div>
-        <button onClick={() => handler?.(productId)}>
+        <button onClick={() => handler( )}>
           <FaPlus />
         </button>
       </div>
+
     </div>
   )
 }
